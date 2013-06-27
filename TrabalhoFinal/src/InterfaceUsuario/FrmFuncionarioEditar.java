@@ -210,7 +210,7 @@ public class FrmFuncionarioEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void BtnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnApagarActionPerformed
-            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Remover?")
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Remover?")
             == 0){
             
             if (bo.Apagar(funcionario)) {

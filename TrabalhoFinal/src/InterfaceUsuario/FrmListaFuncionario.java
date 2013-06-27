@@ -4,7 +4,6 @@
  */
 package InterfaceUsuario;
 
-import DataAccess.FuncionarioDAO;
 import DomainModel.Funcionario;
 import Negocio.FuncionarioBO;
 import java.util.List;

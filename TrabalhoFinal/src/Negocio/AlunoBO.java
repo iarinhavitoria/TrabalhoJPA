@@ -6,6 +6,7 @@ package Negocio;
 
 import DataAccess.AlunoDAO;
 import DomainModel.Aluno;
+import java.util.List;
 
 /**
  *
@@ -66,7 +67,14 @@ public class AlunoBO {
     public Aluno Abrir(int codigo){
         return alunoDAO.Abrir(codigo);
     }
-    public void Apagar(Aluno aluno){
-        alunoDAO.Apagar(aluno);
+    public boolean Apagar(Aluno aluno){
+        return alunoDAO.Apagar(aluno);
+    }
+    public List<Aluno> listarTodos(){
+        return alunoDAO.listarTodos();
+    }
+    
+    public List<Aluno> buscar(Aluno filtro){
+        return alunoDAO.buscar(filtro);
     }
 }

@@ -34,12 +34,14 @@ public class FrmGeral extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         MnCadastro = new javax.swing.JMenu();
+        MniAluno = new javax.swing.JMenuItem();
         MniFuncionario = new javax.swing.JMenuItem();
         MniPredio = new javax.swing.JMenuItem();
         MniCampus = new javax.swing.JMenuItem();
         MniTarefas = new javax.swing.JMenuItem();
         MniMaterial = new javax.swing.JMenuItem();
         MnListar = new javax.swing.JMenu();
+        MniAluno2 = new javax.swing.JMenuItem();
         MniFuncionario2 = new javax.swing.JMenuItem();
         MniPredio2 = new javax.swing.JMenuItem();
         MniCampus2 = new javax.swing.JMenuItem();
@@ -66,6 +68,14 @@ public class FrmGeral extends javax.swing.JFrame {
                 MnCadastroActionPerformed(evt);
             }
         });
+
+        MniAluno.setText("Aluno");
+        MniAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAlunoActionPerformed(evt);
+            }
+        });
+        MnCadastro.add(MniAluno);
 
         MniFuncionario.setText("Funcionario");
         MniFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +120,14 @@ public class FrmGeral extends javax.swing.JFrame {
         jMenuBar1.add(MnCadastro);
 
         MnListar.setText("Listar");
+
+        MniAluno2.setText("Aluno");
+        MniAluno2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAluno2ActionPerformed(evt);
+            }
+        });
+        MnListar.add(MniAluno2);
 
         MniFuncionario2.setText("Funcionario");
         MniFuncionario2.addActionListener(new java.awt.event.ActionListener() {
@@ -256,6 +274,18 @@ public class FrmGeral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MenuSairActionPerformed
 
+    private void MniAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAlunoActionPerformed
+        FrmCadastroAluno janela = new FrmCadastroAluno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniAlunoActionPerformed
+
+    private void MniAluno2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAluno2ActionPerformed
+        FrmListaAluno janela = new FrmListaAluno();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniAluno2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -295,6 +325,8 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenu MenuSair;
     private javax.swing.JMenu MnCadastro;
     private javax.swing.JMenu MnListar;
+    private javax.swing.JMenuItem MniAluno;
+    private javax.swing.JMenuItem MniAluno2;
     private javax.swing.JMenuItem MniCampus;
     private javax.swing.JMenuItem MniCampus2;
     private javax.swing.JMenuItem MniFuncionario;

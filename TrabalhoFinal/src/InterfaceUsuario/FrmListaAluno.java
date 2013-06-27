@@ -4,17 +4,62 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Aluno;
+import Negocio.AlunoBO;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author paulo_000
  */
 public class FrmListaAluno extends javax.swing.JInternalFrame {
-
+    AlunoBO bo;
     /**
      * Creates new form FrmListaAluno
      */
     public FrmListaAluno() {
         initComponents();
+        bo = new AlunoBO();
+        
+        List<Aluno> alunos = bo.listarTodos();
+        
+        preencheTabela(alunos);
+    }
+    
+    private void preencheTabela(List<Aluno> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Nome");
+        model.addColumn("CPF");
+        model.addColumn("RG");
+        model.addColumn("Telefone");
+        model.addColumn("Email");
+        model.addColumn("Media");
+        model.addColumn("Id Curso");
+        model.addColumn("Nome Responsavel");
+        model.addColumn("Telefone Responsavel");
+        
+        for (Aluno a : lista) {
+            Vector valores = new Vector();
+            valores.add(0,a.getIdAluno());
+            valores.add(1,a.getNome());
+            valores.add(2,a.getCpf());
+            valores.add(3,a.getRg());
+            valores.add(4,a.getTelefone());
+            valores.add(5,a.getEmail());
+            valores.add(6,a.getMedia());
+            valores.add(7,a.getIdcurso());
+            valores.add(8,a.getNomeresp());
+            valores.add(9,a.getTelefoneresp());
+            
+            model.addRow(valores);
+        }
+        TblListaAlunos.setModel(model);
+        TblListaAlunos.repaint();
+        
     }
 
     /**
@@ -28,7 +73,7 @@ public class FrmListaAluno extends javax.swing.JInternalFrame {
 
         PnlListaAluno = new javax.swing.JPanel();
         SpnlListaAluno = new javax.swing.JScrollPane();
-        TblListaProdutos = new javax.swing.JTable();
+        TblListaAlunos = new javax.swing.JTable();
         TxtPesquisar = new javax.swing.JTextField();
         BtnPesquisar = new javax.swing.JButton();
         BtnVoltar = new javax.swing.JButton();
@@ -36,9 +81,9 @@ public class FrmListaAluno extends javax.swing.JInternalFrame {
         setTitle("Lista de Alunos");
 
         PnlListaAluno.setBackground(new java.awt.Color(255, 255, 255));
-        PnlListaAluno.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Alunos\n", 0, 0, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        PnlListaAluno.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Alunos\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
 
-        TblListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        TblListaAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -52,12 +97,27 @@ public class FrmListaAluno extends javax.swing.JInternalFrame {
                 "Id", "Nome", "CPF", "RG", "Telefone", "Email", "Media", "Id do Curso", "Responsavel", "Telefone do Respossavel"
             }
         ));
-        TblListaProdutos.getTableHeader().setReorderingAllowed(false);
-        SpnlListaAluno.setViewportView(TblListaProdutos);
+        TblListaAlunos.getTableHeader().setReorderingAllowed(false);
+        TblListaAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblListaAlunosMouseClicked(evt);
+            }
+        });
+        SpnlListaAluno.setViewportView(TblListaAlunos);
 
         BtnPesquisar.setText("Pesquisar");
+        BtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPesquisarActionPerformed(evt);
+            }
+        });
 
         BtnVoltar.setText("Voltar");
+        BtnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PnlListaAlunoLayout = new javax.swing.GroupLayout(PnlListaAluno);
         PnlListaAluno.setLayout(PnlListaAlunoLayout);
@@ -90,7 +150,7 @@ public class FrmListaAluno extends javax.swing.JInternalFrame {
                     .addComponent(BtnPesquisar))
                 .addGap(26, 26, 26)
                 .addComponent(SpnlListaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(BtnVoltar)
                 .addContainerGap())
         );
@@ -114,12 +174,38 @@ public class FrmListaAluno extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TblListaAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListaAlunosMouseClicked
+        Object valor = TblListaAlunos.getValueAt( TblListaAlunos.getSelectedRow(), 0);
+        Aluno a = bo.Abrir((int)valor);
+        FrmEditarAluno janela = new FrmEditarAluno(a, bo);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_TblListaAlunosMouseClicked
+
+    private void BtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisarActionPerformed
+        Aluno a = new Aluno();
+        a.setNome(TxtPesquisar.getText());
+                
+        List<Aluno> lista = bo.buscar(a);
+        
+        preencheTabela(lista);
+    }//GEN-LAST:event_BtnPesquisarActionPerformed
+
+    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_BtnVoltarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnPesquisar;
     private javax.swing.JButton BtnVoltar;
     private javax.swing.JPanel PnlListaAluno;
     private javax.swing.JScrollPane SpnlListaAluno;
-    private javax.swing.JTable TblListaProdutos;
+    private javax.swing.JTable TblListaAlunos;
     private javax.swing.JTextField TxtPesquisar;
     // End of variables declaration//GEN-END:variables
 }

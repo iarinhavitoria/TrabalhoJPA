@@ -6,6 +6,7 @@ package InterfaceUsuario;
 
 import DomainModel.Aluno;
 import Negocio.AlunoBO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,8 +32,8 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
         TxtNome.setText(aluno.getNome());
         TxtCpf.setText(aluno.getCpf());
         TxtRg.setText(aluno.getRg());
-        //Telefone
-        //Email
+        TxtTelefone.setText(aluno.getTelefone());
+        TxtEmail.setText(aluno.getEmail());
         TxtMedia.setText(Double.toString(aluno.getMedia()));
         TxtIdCurso.setText(Integer.toString(aluno.getIdcurso()));
         TxtNomeResponsavel.setText(aluno.getNomeresp());
@@ -41,10 +42,10 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
 
     private void carregaObjeto() {
         aluno.setNome(TxtNome.getText());
-        aluno.setCpf(TxtNome.getText());
+        aluno.setCpf(TxtCpf.getText());
         aluno.setRg(TxtRg.getText());
-        //Telefone
-        // Email
+        aluno.setTelefone(TxtTelefone.getText());
+        aluno.setEmail(TxtEmail.getText());
         aluno.setMedia(Double.parseDouble(TxtMedia.getText()));
         aluno.setIdcurso(Integer.parseInt(TxtIdCurso.getText()));
         aluno.setNomeresp(TxtNomeResponsavel.getText());
@@ -106,6 +107,11 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
         });
 
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         BtnLimparCampos.setText("Limpar Campos");
         BtnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +119,22 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
                 BtnLimparCamposActionPerformed(evt);
             }
         });
+        BtnLimparCampos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                BtnLimparCamposAncestorRemoved(evt);
+            }
+        });
 
         BtnSalvar.setText("Salvar");
+        BtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalvarActionPerformed(evt);
+            }
+        });
 
         LblNome.setText("Nome:");
 
@@ -135,6 +155,11 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
         LblTelefoneResponsavel.setText("Telefone:");
 
         BtnApagar.setText("Apagar");
+        BtnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnApagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,7 +236,7 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNomeResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LblResponsavlel))
-                .addGap(18, 22, Short.MAX_VALUE)
+                .addGap(18, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtTelefoneResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LblTelefoneResponsavel))
@@ -257,8 +282,66 @@ public class FrmEditarAluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TxtTelefoneResponsavelActionPerformed
 
     private void BtnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparCamposActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente limpar os campos?")
+                == 0) {
+            TxtNome.setText(null);
+            TxtCpf.setText(null);
+            TxtRg.setText(null);
+            TxtTelefone.setText(null);
+            TxtEmail.setText(null);
+            TxtMedia.setText(null);
+            TxtIdCurso.setText(null);
+            TxtNomeResponsavel.setText(null);
+            TxtTelefoneResponsavel.setText(null);
+            
+            JOptionPane.showMessageDialog(rootPane, "Pronto!");
+        }
     }//GEN-LAST:event_BtnLimparCamposActionPerformed
+
+    private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+
+                carregaObjeto();
+                
+                if (bo.Salvar(aluno)) {
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Falha ao salvar! Consulte o administrador do sistema!");
+                }
+
+            } else {                
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema!");
+        }
+    }//GEN-LAST:event_BtnSalvarActionPerformed
+
+    private void BtnLimparCamposAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_BtnLimparCamposAncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnLimparCamposAncestorRemoved
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnApagarActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Remover?")
+            == 0){
+            
+            if (bo.Apagar(aluno)) {
+                    JOptionPane.showMessageDialog(rootPane, "Apagado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Nao foi possivel apagar!");
+                }
+            
+            
+        }
+    }//GEN-LAST:event_BtnApagarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnApagar;

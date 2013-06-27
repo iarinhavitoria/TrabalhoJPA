@@ -108,7 +108,7 @@ public class AlunoDAO {
 
     public List<Aluno> listarTodos() {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from metodopags ");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from alunos ");
             ResultSet resultado = comando.executeQuery();
             
             List<Aluno> aluno = new LinkedList<>();

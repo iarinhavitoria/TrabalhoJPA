@@ -4,12 +4,16 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Aluno;
+import Negocio.AlunoBO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author John Kevin
  */
 public class FrmCadastroAluno extends javax.swing.JInternalFrame {
-
+    AlunoBO bo = new AlunoBO();
     /**
      * Creates new form FrmAluno
      */
@@ -73,6 +77,11 @@ public class FrmCadastroAluno extends javax.swing.JInternalFrame {
         });
 
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         BtnLimparCampos.setText("Limpar Campos");
         BtnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +91,11 @@ public class FrmCadastroAluno extends javax.swing.JInternalFrame {
         });
 
         BtnSalvar.setText("Salvar");
+        BtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalvarActionPerformed(evt);
+            }
+        });
 
         LblNome.setText("Nome:");
 
@@ -176,7 +190,7 @@ public class FrmCadastroAluno extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TxtNomeResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LblResponsavlel))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGap(18, 26, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TxtTelefoneResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LblTelefoneResponsavel))
@@ -223,8 +237,55 @@ public class FrmCadastroAluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TxtTelefoneResponsavelActionPerformed
 
     private void BtnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparCamposActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente limpar os campos?")
+                == 0) {
+            TxtNome.setText(null);
+            TxtCpf.setText(null);
+            TxtRg.setText(null);
+            TxtTelefone.setText(null);
+            TxtEmail.setText(null);
+            TxtMedia.setText(null);
+            TxtIdCurso.setText(null);
+            TxtNomeResponsavel.setText(null);
+            TxtTelefoneResponsavel.setText(null);
+                       
+            JOptionPane.showMessageDialog(rootPane, "Pronto!");
+        }
     }//GEN-LAST:event_BtnLimparCamposActionPerformed
+
+    private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
+        Aluno a = new Aluno();
+        a.setNome(TxtNome.getText());
+        a.setCpf(TxtCpf.getText());
+        a.setRg(TxtRg.getText());
+        a.setTelefone(TxtTelefone.getText());
+        a.setEmail(TxtEmail.getText());
+        a.setMedia(Double.parseDouble(TxtMedia.getText()));
+        a.setIdcurso(Integer.parseInt(TxtIdCurso.getText()));
+        a.setNomeresp(TxtNomeResponsavel.getText());
+        a.setTelefoneresp(TxtTelefoneResponsavel.getText());
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+                if (bo.Salvar(a)) { 
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Falha ao salvar! Favor verificar os dados!");
+                }
+
+            } else {                
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+        }
+    }//GEN-LAST:event_BtnSalvarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
