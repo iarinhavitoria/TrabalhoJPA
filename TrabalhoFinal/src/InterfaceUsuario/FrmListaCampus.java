@@ -168,7 +168,7 @@ public class FrmListaCampus extends javax.swing.JInternalFrame {
     private void TblListaCampusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListaCampusMouseClicked
         Object valor = TblListaCampus.getValueAt( TblListaCampus.getSelectedRow(), 0);
         Campus c = bo.Abrir((int)valor);
-        FrmCampusEditar janela = new FrmCampusEditar(c, bo);
+        FrmEditarCampus janela = new FrmEditarCampus(c, bo);
         this.getParent().add(janela);
         janela.setVisible(true);
         this.setVisible(false);

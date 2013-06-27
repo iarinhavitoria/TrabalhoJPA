@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
  *
  * @author paulo_000
  */
-public class FrmTarefasEditar extends javax.swing.JInternalFrame {
+public class FrmEditarTarefas extends javax.swing.JInternalFrame {
     TarefasSemanais tarefa;
     TarefaSemanaisBO bo;
     /**
-     * Creates new form FrmTarefasEditar
+     * Creates new form FrmEditarTarefas
      */
-    public FrmTarefasEditar(TarefasSemanais t, TarefaSemanaisBO tbo) {
+    public FrmEditarTarefas(TarefasSemanais t, TarefaSemanaisBO tbo) {
         initComponents();
         this.tarefa = t;
         this.bo = tbo;

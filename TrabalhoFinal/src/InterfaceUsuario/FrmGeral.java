@@ -208,13 +208,13 @@ public class FrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_MnCadastroActionPerformed
 
     private void MniPredioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniPredioActionPerformed
-        FrmPredio janela = new FrmPredio();
+        FrmCadastroPredio janela = new FrmCadastroPredio();
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_MniPredioActionPerformed
 
     private void MniCampusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniCampusActionPerformed
-        FrmCampus janela = new FrmCampus();
+        FrmCadastroCampus janela = new FrmCadastroCampus();
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_MniCampusActionPerformed
@@ -226,7 +226,9 @@ public class FrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_MniFuncionario2ActionPerformed
 
     private void MniPredio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniPredio2ActionPerformed
-        // TODO add your handling code here:
+        FrmListaPredio janela = new FrmListaPredio();
+        add(janela);
+        janela.setVisible(true);
     }//GEN-LAST:event_MniPredio2ActionPerformed
 
     private void MniCampus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniCampus2ActionPerformed

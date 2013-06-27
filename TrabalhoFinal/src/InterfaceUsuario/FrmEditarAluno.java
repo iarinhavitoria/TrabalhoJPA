@@ -11,14 +11,14 @@ import Negocio.AlunoBO;
  *
  * @author Iara
  */
-public class FrmAlunoEditar extends javax.swing.JInternalFrame {
+public class FrmEditarAluno extends javax.swing.JInternalFrame {
     Aluno aluno;
     AlunoBO bo;
 
     /**
      * Creates new form FrmAluno
      */
-    public FrmAlunoEditar(Aluno a, AlunoBO d) {
+    public FrmEditarAluno(Aluno a, AlunoBO d) {
         initComponents();
         this.aluno = a;
         this.bo = d;

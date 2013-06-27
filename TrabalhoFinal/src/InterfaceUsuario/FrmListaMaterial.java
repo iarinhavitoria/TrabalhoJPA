@@ -25,9 +25,9 @@ public class FrmListaMaterial extends javax.swing.JInternalFrame {
         initComponents();
         bo = new MaterialBO();
         
-        List<Material> funcionarios = bo.listarTodos();
+        List<Material> materiais = bo.listarTodos();
         
-        preencheTabela(funcionarios);
+        preencheTabela(materiais);
     }
 
     private void preencheTabela(List<Material> lista) {

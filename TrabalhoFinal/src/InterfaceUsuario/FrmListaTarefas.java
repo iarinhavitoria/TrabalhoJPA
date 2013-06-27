@@ -168,7 +168,7 @@ public class FrmListaTarefas extends javax.swing.JInternalFrame {
     private void TblListaTarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListaTarefasMouseClicked
         Object valor = TblListaTarefas.getValueAt( TblListaTarefas.getSelectedRow(), 0);
         TarefasSemanais ts = bo.Abrir((int)valor);
-        FrmTarefasEditar janela = new FrmTarefasEditar(ts, bo);
+        FrmEditarTarefas janela = new FrmEditarTarefas(ts, bo);
         this.getParent().add(janela);
         janela.setVisible(true);
         this.setVisible(false);
