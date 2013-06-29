@@ -14,7 +14,7 @@ import DomainModel.Curso;
 public class CursoBO {
     CursoDAO cursoDAO = new CursoDAO();
     
-    public void Salvar(Curso obj){
+    public boolean Salvar(Curso obj){
         //Validacao do nome (igual a zero)
         if (obj.getNome().trim().length() == 0 ){
             throw new RuntimeException("O nome nao pode ser vazio!");
@@ -28,6 +28,7 @@ public class CursoBO {
         
         //Se tudo estiver ok, passa para DataAccess
         cursoDAO.Salvar(obj);
+        return true;
     }
     
     

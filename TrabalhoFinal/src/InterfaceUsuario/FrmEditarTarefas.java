@@ -52,7 +52,7 @@ public class FrmEditarTarefas extends javax.swing.JInternalFrame {
         BtnCancelar = new javax.swing.JButton();
         BtnApagar = new javax.swing.JButton();
 
-        setTitle("Editar Trefas");
+        setTitle("Editar Tarefas");
 
         PnlTarefas.setBackground(new java.awt.Color(255, 255, 255));
         PnlTarefas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Tarefas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -129,7 +129,7 @@ public class FrmEditarTarefas extends javax.swing.JInternalFrame {
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnApagar))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

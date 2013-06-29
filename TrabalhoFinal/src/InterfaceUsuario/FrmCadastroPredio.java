@@ -42,11 +42,11 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
-        setTitle("Cadastrar Pedido");
+        setTitle("Cadastrar Predio");
 
         PnlPedido.setBackground(new java.awt.Color(255, 255, 255));
         PnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        PnlPedido.setToolTipText("Pedido");
+        PnlPedido.setToolTipText("Predio");
         PnlPedido.setAutoscrolls(true);
 
         TxtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +132,7 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
                     .addComponent(BrnSalvar)
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

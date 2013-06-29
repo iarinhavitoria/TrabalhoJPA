@@ -100,7 +100,7 @@ public class FrmCadastroTarefas extends javax.swing.JInternalFrame {
                 .addGroup(PnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 43, Short.MAX_VALUE)
                 .addGroup(PnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnLimpar)
@@ -124,6 +124,8 @@ public class FrmCadastroTarefas extends javax.swing.JInternalFrame {
                 .addComponent(PnlTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        PnlTarefas.getAccessibleContext().setAccessibleName("Cadastrar Tarefas");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

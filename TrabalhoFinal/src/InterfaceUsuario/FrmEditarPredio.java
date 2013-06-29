@@ -62,11 +62,11 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
         BtnCancelar = new javax.swing.JButton();
         BtnApagar = new javax.swing.JButton();
 
-        setTitle("Editar Pedido");
+        setTitle("Editar Predio");
 
         PnlEditarPedido.setBackground(new java.awt.Color(255, 255, 255));
         PnlEditarPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        PnlEditarPedido.setToolTipText("Editar Pedido");
+        PnlEditarPedido.setToolTipText("Editar Predio");
         PnlEditarPedido.setAutoscrolls(true);
 
         TxtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +166,7 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnApagar))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,6 +185,8 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
                 .addComponent(PnlEditarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        PnlEditarPedido.getAccessibleContext().setAccessibleName("Editar Predio");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

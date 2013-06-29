@@ -35,6 +35,7 @@ public class FrmGeral extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         MnCadastro = new javax.swing.JMenu();
         MniAluno = new javax.swing.JMenuItem();
+        MniCurso = new javax.swing.JMenuItem();
         MniFuncionario = new javax.swing.JMenuItem();
         MniPredio = new javax.swing.JMenuItem();
         MniCampus = new javax.swing.JMenuItem();
@@ -76,6 +77,14 @@ public class FrmGeral extends javax.swing.JFrame {
             }
         });
         MnCadastro.add(MniAluno);
+
+        MniCurso.setText("Curso");
+        MniCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniCursoActionPerformed(evt);
+            }
+        });
+        MnCadastro.add(MniCurso);
 
         MniFuncionario.setText("Funcionario");
         MniFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +295,12 @@ public class FrmGeral extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_MniAluno2ActionPerformed
 
+    private void MniCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniCursoActionPerformed
+        FrmCadastroCurso janela = new FrmCadastroCurso();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniCursoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,6 +344,7 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenuItem MniAluno2;
     private javax.swing.JMenuItem MniCampus;
     private javax.swing.JMenuItem MniCampus2;
+    private javax.swing.JMenuItem MniCurso;
     private javax.swing.JMenuItem MniFuncionario;
     private javax.swing.JMenuItem MniFuncionario2;
     private javax.swing.JMenuItem MniMaterial;
