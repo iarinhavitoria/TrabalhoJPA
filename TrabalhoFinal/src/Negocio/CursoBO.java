@@ -6,6 +6,7 @@ package Negocio;
 
 import DataAccess.CursoDAO;
 import DomainModel.Curso;
+import java.util.List;
 
 /**
  *
@@ -31,5 +32,18 @@ public class CursoBO {
         return true;
     }
     
+    public Curso Abrir(int codigo){
+        return cursoDAO.Abrir(codigo);
+    }
+    public boolean Apagar(Curso curso){
+        return cursoDAO.Apagar(curso);
+    }
     
+    public List<Curso> listarTodos(){
+        return cursoDAO.listarTodos();
+    }
+    
+    public List<Curso> buscar(Curso filtro){
+        return cursoDAO.buscar(filtro);
+    }  
 }

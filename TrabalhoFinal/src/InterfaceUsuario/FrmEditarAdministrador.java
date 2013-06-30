@@ -4,17 +4,39 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Administrador;
+import Negocio.AdministradorBO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Iara
  */
 public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
-
+    
+    Administrador admin;
+    AdministradorBO bo;
     /**
      * Creates new form FrmEditarAdministrador
      */
     public FrmEditarAdministrador() {
         initComponents();
+        
+        
+        carregaCampos();
+    }
+    
+    private void carregaCampos() {
+        
+        TxtUsuario.setText(admin.getUsuario());
+        TxtSenha.setText(admin.getSenha());
+        
+     }
+
+    private void carregaObjeto() {
+        admin.setUsuario(TxtUsuario.getText());
+        admin.setSenha(TxtSenha.getText());
+        
     }
 
     /**
@@ -27,8 +49,6 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         PnlAdminstrador = new javax.swing.JPanel();
-        TxtNome = new javax.swing.JTextField();
-        LblNome = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
@@ -42,8 +62,6 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
         PnlAdminstrador.setBackground(new java.awt.Color(255, 255, 255));
         PnlAdminstrador.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Adminstrador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
         PnlAdminstrador.setAutoscrolls(true);
-
-        LblNome.setText("Nome:");
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,12 +104,10 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
                         .addComponent(BtnCancelar))
                     .addGroup(PnlAdminstradorLayout.createSequentialGroup()
                         .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblNome)
                             .addComponent(LblUsuario)
                             .addComponent(LblSenha))
                         .addGap(58, 58, 58)
                         .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtNome)
                             .addComponent(TxtSenha)
                             .addComponent(TxtUsuario))))
                 .addGap(73, 73, 73))
@@ -99,11 +115,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
         PnlAdminstradorLayout.setVerticalGroup(
             PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlAdminstradorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblNome))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblUsuario)
                     .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,7 +123,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblSenha)
                     .addComponent(TxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(BtnLimpar)
@@ -140,25 +152,46 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+                carregaObjeto();
+                if (bo.Salvar(admin)) {
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Falha ao salvar! Favor verificar os dados!");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
-        
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente limpar os campos?")
+                == 0) {
+            TxtUsuario.setText(null);
+            TxtSenha.setText(null);
+            
+            JOptionPane.showMessageDialog(rootPane, "Pronto!");
+        }
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-       
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
-    private javax.swing.JLabel LblNome;
     private javax.swing.JLabel LblSenha;
     private javax.swing.JLabel LblUsuario;
     private javax.swing.JPanel PnlAdminstrador;
-    private javax.swing.JTextField TxtNome;
     private javax.swing.JTextField TxtSenha;
     private javax.swing.JTextField TxtUsuario;
     private javax.swing.JButton btnSalvar;

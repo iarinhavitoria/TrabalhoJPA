@@ -41,8 +41,10 @@ public class FrmGeral extends javax.swing.JFrame {
         MniCampus = new javax.swing.JMenuItem();
         MniTarefas = new javax.swing.JMenuItem();
         MniMaterial = new javax.swing.JMenuItem();
+        MniQuarto = new javax.swing.JMenuItem();
         MnListar = new javax.swing.JMenu();
         MniAluno2 = new javax.swing.JMenuItem();
+        MniCurso2 = new javax.swing.JMenuItem();
         MniFuncionario2 = new javax.swing.JMenuItem();
         MniPredio2 = new javax.swing.JMenuItem();
         MniCampus2 = new javax.swing.JMenuItem();
@@ -50,6 +52,8 @@ public class FrmGeral extends javax.swing.JFrame {
         MniMaterial2 = new javax.swing.JMenuItem();
         MenuRelatorio = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        MnAdministrador = new javax.swing.JMenu();
+        MniAdministrador = new javax.swing.JMenuItem();
         MenuSair = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -126,6 +130,14 @@ public class FrmGeral extends javax.swing.JFrame {
         });
         MnCadastro.add(MniMaterial);
 
+        MniQuarto.setText("Quarto");
+        MniQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniQuartoActionPerformed(evt);
+            }
+        });
+        MnCadastro.add(MniQuarto);
+
         jMenuBar1.add(MnCadastro);
 
         MnListar.setText("Listar");
@@ -137,6 +149,14 @@ public class FrmGeral extends javax.swing.JFrame {
             }
         });
         MnListar.add(MniAluno2);
+
+        MniCurso2.setText("Curso");
+        MniCurso2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniCurso2ActionPerformed(evt);
+            }
+        });
+        MnListar.add(MniCurso2);
 
         MniFuncionario2.setText("Funcionario");
         MniFuncionario2.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +206,23 @@ public class FrmGeral extends javax.swing.JFrame {
         MenuRelatorio.add(jMenuItem1);
 
         jMenuBar1.add(MenuRelatorio);
+
+        MnAdministrador.setText("Administrador");
+        MnAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnAdministradorActionPerformed(evt);
+            }
+        });
+
+        MniAdministrador.setText("Editar");
+        MniAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAdministradorActionPerformed(evt);
+            }
+        });
+        MnAdministrador.add(MniAdministrador);
+
+        jMenuBar1.add(MnAdministrador);
 
         MenuSair.setText("Sair");
         MenuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -301,6 +338,28 @@ public class FrmGeral extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_MniCursoActionPerformed
 
+    private void MniCurso2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniCurso2ActionPerformed
+        FrmListaCurso janela = new FrmListaCurso();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniCurso2ActionPerformed
+
+    private void MnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnAdministradorActionPerformed
+        
+    }//GEN-LAST:event_MnAdministradorActionPerformed
+
+    private void MniAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAdministradorActionPerformed
+        FrmEditarAdministrador janela = new FrmEditarAdministrador();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniAdministradorActionPerformed
+
+    private void MniQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniQuartoActionPerformed
+        FrmCadastrarQuarto janela = new FrmCadastrarQuarto();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_MniQuartoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,19 +397,23 @@ public class FrmGeral extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenu MenuSair;
+    private javax.swing.JMenu MnAdministrador;
     private javax.swing.JMenu MnCadastro;
     private javax.swing.JMenu MnListar;
+    private javax.swing.JMenuItem MniAdministrador;
     private javax.swing.JMenuItem MniAluno;
     private javax.swing.JMenuItem MniAluno2;
     private javax.swing.JMenuItem MniCampus;
     private javax.swing.JMenuItem MniCampus2;
     private javax.swing.JMenuItem MniCurso;
+    private javax.swing.JMenuItem MniCurso2;
     private javax.swing.JMenuItem MniFuncionario;
     private javax.swing.JMenuItem MniFuncionario2;
     private javax.swing.JMenuItem MniMaterial;
     private javax.swing.JMenuItem MniMaterial2;
     private javax.swing.JMenuItem MniPredio;
     private javax.swing.JMenuItem MniPredio2;
+    private javax.swing.JMenuItem MniQuarto;
     private javax.swing.JMenuItem MniTarefas;
     private javax.swing.JMenuItem MniTarefas1;
     private javax.swing.JMenu jMenu1;

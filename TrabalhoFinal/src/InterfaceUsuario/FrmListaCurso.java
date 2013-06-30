@@ -4,17 +4,46 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Curso;
+import Negocio.CursoBO;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Iara
  */
 public class FrmListaCurso extends javax.swing.JInternalFrame {
-
+    CursoBO bo;
     /**
      * Creates new form FrmListaCurso
      */
     public FrmListaCurso() {
         initComponents();
+        bo = new CursoBO();
+        
+        List<Curso> cursos = bo.listarTodos();
+        
+        preencheTabela(cursos);
+    }
+    
+    private void preencheTabela(List<Curso> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Descrição");
+        
+        for (Curso c : lista) {
+            Vector valores = new Vector();
+            valores.add(0,c.getIdCurso());
+            valores.add(1,c.getNome());
+            
+            model.addRow(valores);
+        }
+        TblListaCurso.setModel(model);
+        TblListaCurso.repaint();
+        
     }
 
     /**
@@ -126,15 +155,28 @@ public class FrmListaCurso extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TblListaCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListaCursoMouseClicked
-        
+        Object valor = TblListaCurso.getValueAt( TblListaCurso.getSelectedRow(), 0);
+        Curso c = bo.Abrir((int)valor);
+        FrmEditarCurso janela = new FrmEditarCurso(c, bo);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_TblListaCursoMouseClicked
 
     private void BtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisarActionPerformed
+        Curso c = new Curso(0, "");
+        c.setNome(TxtPesquisar.getText());
+                
+        List<Curso> lista = bo.buscar(c);
         
+        preencheTabela(lista);
     }//GEN-LAST:event_BtnPesquisarActionPerformed
 
     private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
-       
+       if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

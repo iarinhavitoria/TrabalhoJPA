@@ -4,17 +4,36 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Curso;
+import Negocio.CursoBO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Iara
  */
 public class FrmEditarCurso extends javax.swing.JInternalFrame {
-
+    Curso curso;
+    CursoBO bo;
+    
     /**
      * Creates new form FrmEditarCurso
      */
-    public FrmEditarCurso() {
+    public FrmEditarCurso(Curso c, CursoBO cbo) {
         initComponents();
+        this.curso = c;
+        this.bo = cbo;
+        
+        carregaCampos();
+    }
+    
+    private void carregaCampos() {
+        TxtNome.setText(curso.getNome());
+        
+     }
+
+    private void carregaObjeto() {
+        curso.setNome(TxtNome.getText());
     }
 
     /**
@@ -32,6 +51,7 @@ public class FrmEditarCurso extends javax.swing.JInternalFrame {
         btnSalvar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
+        BtnApagar = new javax.swing.JButton();
 
         setTitle("Editar Curso");
 
@@ -62,25 +82,33 @@ public class FrmEditarCurso extends javax.swing.JInternalFrame {
             }
         });
 
+        BtnApagar.setText("Apagar");
+        BtnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PnlCursoLayout = new javax.swing.GroupLayout(PnlCurso);
         PnlCurso.setLayout(PnlCursoLayout);
         PnlCursoLayout.setHorizontalGroup(
             PnlCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlCursoLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(PnlCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PnlCursoLayout.createSequentialGroup()
-                        .addComponent(LblNome)
-                        .addGap(61, 61, 61)
-                        .addComponent(TxtNome))
-                    .addGroup(PnlCursoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnLimpar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnCancelar)))
-                .addGap(73, 73, 73))
+                .addComponent(LblNome)
+                .addGap(61, 61, 61)
+                .addComponent(TxtNome)
+                .addGap(26, 26, 26))
+            .addGroup(PnlCursoLayout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(btnSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnLimpar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnApagar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnCancelar)
+                .addGap(27, 27, 27))
         );
         PnlCursoLayout.setVerticalGroup(
             PnlCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,11 +117,12 @@ public class FrmEditarCurso extends javax.swing.JInternalFrame {
                 .addGroup(PnlCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LblNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(PnlCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(BtnLimpar)
-                    .addComponent(BtnCancelar))
+                    .addComponent(BtnCancelar)
+                    .addComponent(BtnApagar))
                 .addGap(25, 25, 25))
         );
 
@@ -118,18 +147,57 @@ public class FrmEditarCurso extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       
+       try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+
+                carregaObjeto();
+                
+                if (bo.Salvar(curso)) {
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Falha ao salvar! Consulte o administrador do sistema!");
+                }
+
+            } else {                
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema!");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
-        
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente limpar os campos?")
+                == 0) {
+            TxtNome.setText(null);
+                                   
+            JOptionPane.showMessageDialog(rootPane, "Pronto!");
+        }
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-        
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
+    private void BtnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnApagarActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Remover?")
+            == 0){
+            
+            if (bo.Apagar(curso)) {
+                    JOptionPane.showMessageDialog(rootPane, "Apagado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Nao foi possivel apagar!");
+                }
+            
+            
+        }
+    }//GEN-LAST:event_BtnApagarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnApagar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
     private javax.swing.JLabel LblNome;

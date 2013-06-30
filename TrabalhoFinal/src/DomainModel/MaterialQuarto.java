@@ -14,6 +14,7 @@ public class MaterialQuarto {
     int idMaterialQuarto;
     Material material;
     int qtde;
+    boolean ativo;
 
     public int getIdMaterialQuarto() {
         return idMaterialQuarto;
@@ -66,6 +67,16 @@ public class MaterialQuarto {
         
         return true;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
     
     
     

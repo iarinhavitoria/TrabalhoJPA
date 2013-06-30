@@ -4,6 +4,7 @@
  */
 package DataAccess;
 
+import DomainModel.MaterialQuarto;
 import DomainModel.Quarto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,22 +29,44 @@ public class QuartoDAO {
     }
 
     public boolean Salvar(Quarto obj) {
-        try{
+        try {
             if (obj.getIdQuarto() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into quartos(descricao) values(?)");
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into quartos(numero, banheiro, idpredio) values(?,?,?)");
                 comando.setInt(1, obj.getNumero());
-                comando.setBoolean(2, obj.isBanheiro());
+                comando.setBoolean(2, true);
                 comando.setInt(3, obj.getCodpredio());
                 comando.executeUpdate();
             } else {
-                PreparedStatement comando = bd.getConexao().prepareStatement("update quartos set descricao = ? where idquarto = ?");
+                PreparedStatement comando = bd.getConexao().prepareStatement("update quartos set numero=?,banheiro=?,idpredio=? where idquarto = ?");
                 comando.setInt(1, obj.getNumero());
-                comando.setBoolean(2, obj.isBanheiro());
+                comando.setBoolean(2, true);
                 comando.setInt(3, obj.getCodpredio());
-                comando.setInt(4, obj.getIdQuarto());
                 comando.executeUpdate();
             }
-            
+
+            for (MaterialQuarto mq : obj.getMats()) {
+                if (mq.isAtivo()) {
+                    if (mq.getIdMaterialQuarto() == 0) {
+                        PreparedStatement comando = bd.getConexao().prepareStatement("insert into materialporquarto(idmaterial, idquarto, qtde) values(?,?,?)");
+                        comando.setInt(1, obj.getIdQuarto());
+                        comando.setInt(2, mq.getMaterial().getIdMaterial());
+                        comando.setInt(3, mq.getQtde());
+                        comando.executeUpdate();
+                    } else {
+                        //conferir esse pedaço
+                        PreparedStatement comando = bd.getConexao().prepareStatement("update materialporquarto set idmaterial=?, qtde = ? where idquarto = ?");
+                        comando.setInt(1, mq.getMaterial().getIdMaterial());
+                        comando.setInt(2, mq.getQtde());
+                        comando.setInt(3, obj.getIdQuarto());
+                        comando.executeUpdate();
+                    }
+                } else {
+                    PreparedStatement comando = bd.getConexao().prepareStatement("delete from materialporquarto where idmaterial = ?");
+                    comando.setInt(1, obj.getIdQuarto());
+                    comando.executeUpdate();
+                }
+            }
+
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(QuartoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,18 +76,20 @@ public class QuartoDAO {
 
     public Quarto Abrir(int codigo) {
         try {
-            Quarto quarto = new Quarto (0, 0, true);
+            Quarto quarto = new Quarto(0,0,false);
 
             PreparedStatement comando = bd.getConexao().prepareStatement("select * from quartos where idquarto = ?");
             comando.setInt(1, codigo);
             ResultSet resultado = comando.executeQuery();
 
             resultado.first();
-            
-            quarto.setIdQuarto(resultado.getInt("idquarto"));
+
+            quarto.setIdQuarto(resultado.getInt("codigo"));
             quarto.setNumero(resultado.getInt("numero"));
+            quarto.setCodpredio(resultado.getInt("idpredio"));
             quarto.setBanheiro(resultado.getBoolean("banheiro"));
-            quarto.setCodpredio(resultado.getInt("codpredio"));
+            
+            carregaItens(codigo, quarto);
 
             return quarto;
 
@@ -76,6 +101,10 @@ public class QuartoDAO {
 
     public boolean Apagar(Quarto obj) {
         try {
+            PreparedStatement comando2 = bd.getConexao().prepareStatement("delete from materialporquarto where idquarto = ?");
+            comando2.setInt(1, obj.getIdQuarto());
+            comando2.executeUpdate();
+            
             PreparedStatement comando = bd.getConexao().prepareStatement("delete from quartos where idquarto = ?");
             comando.setInt(1, obj.getIdQuarto());
             comando.executeUpdate();
@@ -88,21 +117,25 @@ public class QuartoDAO {
 
     public List<Quarto> listarTodos() {
         try {
-            PreparedStatement comando = bd.getConexao().prepareStatement("select * from metodopags ");
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from quartos ");
             ResultSet resultado = comando.executeQuery();
             
-            List<Quarto> quarto = new LinkedList<>();
+            List<Quarto> quartos = new LinkedList<>();
             while (resultado.next()) {
+                
                 Quarto tmp = new Quarto(0,0,false);
                 
                 tmp.setIdQuarto(resultado.getInt("idquarto"));
                 tmp.setNumero(resultado.getInt("numero"));
+                tmp.setCodpredio(resultado.getInt("idpredio"));
                 tmp.setBanheiro(resultado.getBoolean("banheiro"));
-                tmp.setCodpredio(resultado.getInt("codpredio"));
+                // Pega o objeto e coloca na lista
                 
-                quarto.add(tmp);
+                carregaItens(tmp.getIdQuarto(), tmp);
+                
+                quartos.add(tmp);
             }
-            return quarto;
+            return quartos;
         } catch (SQLException ex) {
             Logger.getLogger(QuartoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -111,48 +144,50 @@ public class QuartoDAO {
 
     public List<Quarto> buscar(Quarto filtro) {
         try {
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from quartos where idquarto = ? or idpredio = ? or numero = ?");
+            comando.setInt(1, filtro.getIdQuarto());
+            comando.setInt(2, filtro.getCodpredio());
+            comando.setInt(3, filtro.getNumero());
+            ResultSet resultado = comando.executeQuery();
             
-            String sql = "select * from quartos ";
-            String where = "";
-            
-            if(filtro.getNumero()> 0){
-                where = "numero ="+filtro.getNumero()+"%'";
-            }
-                       
-            
-            if (filtro.getIdQuarto() > 0) {
-                if(where.length() > 0) {
-                    where = where + " and ";
-                }
-                where = where + " idquarto = " + filtro.getIdQuarto();
-            }
-            
-            if(where.length() > 0){
-                sql = sql + " where " + where;
-            }
-            
-            Statement comando = bd.getConexao().createStatement();
-            
-            ResultSet resultado = comando.executeQuery(sql);
-            
-            List<Quarto> quarto = new LinkedList<>();
+            List<Quarto> quartos = new LinkedList<>();
             while (resultado.next()) {
                 
-                Quarto temp = new Quarto(0,0, false);
+                Quarto tmp = new Quarto(0,0,false);
                 
-                temp.setIdQuarto(resultado.getInt("idquarto"));
-                temp.setNumero(resultado.getInt("numero"));
-                temp.setBanheiro(resultado.getBoolean("banheiro"));
-                temp.setCodpredio(resultado.getInt("codpredio"));
+                tmp.setIdQuarto(resultado.getInt("idquarto"));
+                tmp.setNumero(resultado.getInt("numero"));
+                tmp.setBanheiro(resultado.getBoolean("banheiro"));
+                tmp.setCodpredio(resultado.getInt("idpredio"));
                 
                 
-                quarto.add(temp);
+                carregaItens(tmp.getIdQuarto(), tmp);
+                
+                quartos.add(tmp);
             }
-            return quarto;
+            return quartos;
         } catch (SQLException ex) {
             Logger.getLogger(QuartoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    
+    private void carregaItens(int id, Quarto quarto) throws SQLException {
+        PreparedStatement comando2 = bd.getConexao().prepareStatement("select * from materialporquarto where idvenda = ?");
+        comando2.setInt(1, id);
+        ResultSet resultado2 = comando2.executeQuery();
+
+        List<MaterialQuarto> materiais = new LinkedList<>();
+        MaterialDAO mat = new MaterialDAO();
+        while (resultado2.next()) {
+            MaterialQuarto tmp = new MaterialQuarto();
+            tmp.setIdMaterialQuarto(resultado2.getInt("idmaterialquarto"));
+            tmp.setQtde(resultado2.getInt("qtde"));
+            tmp.setMaterial(mat.Abrir(resultado2.getInt("idmaterial")));
+            materiais.add(tmp);
+        }
+
+        quarto.setMats(materiais);
     }
     
 }

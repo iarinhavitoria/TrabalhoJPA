@@ -102,7 +102,7 @@ public class CursoDAO {
     public List<Curso> buscar(Curso filtro) {
         try {
             
-            String sql = "select * from curso ";
+            String sql = "select * from cursos ";
             String where = "";
             
             if(filtro.getNome().length() > 0){
@@ -131,7 +131,7 @@ public class CursoDAO {
                 Curso temp = new Curso(0,"");
                 
                 temp.setIdCurso(resultado.getInt("idcurso"));
-                temp.setNome("nome");                
+                temp.setNome(resultado.getString("nome"));                
                 
                 curso.add(temp);
             }
