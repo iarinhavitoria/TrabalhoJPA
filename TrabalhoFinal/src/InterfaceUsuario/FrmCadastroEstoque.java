@@ -27,12 +27,10 @@ public class FrmCadastroEstoque extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         PnlEstoque = new javax.swing.JPanel();
-        TxtNome2 = new javax.swing.JTextField();
-        TxtCpf2 = new javax.swing.JTextField();
-        TxtTelefone2 = new javax.swing.JTextField();
-        LblNome2 = new javax.swing.JLabel();
-        LblCpf2 = new javax.swing.JLabel();
-        LblTelefone2 = new javax.swing.JLabel();
+        TxtIdMaterial = new javax.swing.JTextField();
+        TxtQuantidade = new javax.swing.JTextField();
+        LblIdMaterial = new javax.swing.JLabel();
+        LblQuantidade = new javax.swing.JLabel();
         btnSalvar2 = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
@@ -43,11 +41,9 @@ public class FrmCadastroEstoque extends javax.swing.JInternalFrame {
         PnlEstoque.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Estoque", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
         PnlEstoque.setAutoscrolls(true);
 
-        LblNome2.setText("Nome:");
+        LblIdMaterial.setText("Id Material:");
 
-        LblCpf2.setText("CPF:");
-
-        LblTelefone2.setText("Telefone:");
+        LblQuantidade.setText("Quantidade:");
 
         btnSalvar2.setText("Salvar");
         btnSalvar2.addActionListener(new java.awt.event.ActionListener() {
@@ -79,14 +75,12 @@ public class FrmCadastroEstoque extends javax.swing.JInternalFrame {
                 .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PnlEstoqueLayout.createSequentialGroup()
                         .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblNome2)
-                            .addComponent(LblCpf2)
-                            .addComponent(LblTelefone2))
-                        .addGap(46, 46, 46)
+                            .addComponent(LblIdMaterial)
+                            .addComponent(LblQuantidade))
+                        .addGap(61, 61, 61)
                         .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtNome2)
-                            .addComponent(TxtCpf2)
-                            .addComponent(TxtTelefone2)))
+                            .addComponent(TxtIdMaterial)
+                            .addComponent(TxtQuantidade)))
                     .addGroup(PnlEstoqueLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalvar2)
@@ -101,17 +95,13 @@ public class FrmCadastroEstoque extends javax.swing.JInternalFrame {
             .addGroup(PnlEstoqueLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblNome2))
+                    .addComponent(TxtIdMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblIdMaterial))
                 .addGap(18, 18, 18)
                 .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtCpf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblCpf2))
-                .addGap(18, 18, 18)
-                .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblTelefone2))
-                .addGap(18, 54, Short.MAX_VALUE)
+                    .addComponent(TxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblQuantidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PnlEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar2)
                     .addComponent(BtnLimpar)
@@ -140,44 +130,25 @@ public class FrmCadastroEstoque extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar2ActionPerformed
-        
+
     }//GEN-LAST:event_btnSalvar2ActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
-        
 
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-        
+
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
-    private javax.swing.JLabel LblCpf;
-    private javax.swing.JLabel LblCpf1;
-    private javax.swing.JLabel LblCpf2;
-    private javax.swing.JLabel LblNome;
-    private javax.swing.JLabel LblNome1;
-    private javax.swing.JLabel LblNome2;
-    private javax.swing.JLabel LblTelefone;
-    private javax.swing.JLabel LblTelefone1;
-    private javax.swing.JLabel LblTelefone2;
+    private javax.swing.JLabel LblIdMaterial;
+    private javax.swing.JLabel LblQuantidade;
     private javax.swing.JPanel PnlEstoque;
-    private javax.swing.JPanel PnlFuncionario;
-    private javax.swing.JPanel PnlFuncionario1;
-    private javax.swing.JTextField TxtCpf;
-    private javax.swing.JTextField TxtCpf1;
-    private javax.swing.JTextField TxtCpf2;
-    private javax.swing.JTextField TxtNome;
-    private javax.swing.JTextField TxtNome1;
-    private javax.swing.JTextField TxtNome2;
-    private javax.swing.JTextField TxtTelefone;
-    private javax.swing.JTextField TxtTelefone1;
-    private javax.swing.JTextField TxtTelefone2;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
+    private javax.swing.JTextField TxtIdMaterial;
+    private javax.swing.JTextField TxtQuantidade;
     private javax.swing.JButton btnSalvar2;
     // End of variables declaration//GEN-END:variables
 }

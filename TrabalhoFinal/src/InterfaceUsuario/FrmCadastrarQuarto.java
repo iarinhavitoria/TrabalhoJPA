@@ -51,7 +51,7 @@ public class FrmCadastrarQuarto extends javax.swing.JInternalFrame {
         for (MaterialQuarto mq : quarto.getMats()) {
             Vector v = new Vector();
             v.add(mq.getIdMaterialQuarto());
-            v.add(mq);
+            v.add(mq.getMaterial().getDescricao());
             v.add(mq.getQtde());            
             model.addRow(v);
         }
@@ -164,8 +164,6 @@ public class FrmCadastrarQuarto extends javax.swing.JInternalFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         LblMaterial1.setText("Material:");
-
-        cbxMateriais1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Quantidade");
 
