@@ -30,12 +30,12 @@ public class AlunoTarefaDAO {
     public boolean Salvar(AlunoTarefa obj) {
         try{
             if (obj.getIdalunotarefa() == 0) {
-                PreparedStatement comando = bd.getConexao().prepareStatement("insert into alunosportarefa() values()");
+                PreparedStatement comando = bd.getConexao().prepareStatement("insert into alunosportarefa(idaluno, idtarefa) values(?,?)");
                 comando.setInt(1, obj.getIdaluno());
                 comando.setInt(2, obj.getIdtarefa());
                 comando.executeUpdate();
             } else {
-                PreparedStatement comando = bd.getConexao().prepareStatement("update alunosportarefa set  where idalunotarefa = ?");
+                PreparedStatement comando = bd.getConexao().prepareStatement("update alunosportarefa set idaluno=?, idtarefa =? where idalunotarefa = ?");
                 comando.setObject(1, obj.getIdaluno());
                 comando.setObject(2, obj.getIdtarefa());
                 comando.setInt(3, obj.getIdalunotarefa());

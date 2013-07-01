@@ -161,7 +161,7 @@ public class FrmCadastroFuncionario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

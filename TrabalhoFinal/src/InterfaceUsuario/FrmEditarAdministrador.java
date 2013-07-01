@@ -70,7 +70,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
             }
         });
 
-        BtnLimpar.setText("Limpar Campo");
+        BtnLimpar.setText("Limpar Campos");
         BtnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnLimparActionPerformed(evt);
@@ -123,7 +123,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
                 .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblSenha)
                     .addComponent(TxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(PnlAdminstradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(BtnLimpar)
@@ -165,7 +165,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

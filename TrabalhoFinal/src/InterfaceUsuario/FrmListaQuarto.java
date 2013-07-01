@@ -33,10 +33,10 @@ public class FrmListaQuarto extends javax.swing.JInternalFrame {
         BtnPesquisar = new javax.swing.JButton();
         BtnVoltar = new javax.swing.JButton();
 
-        setTitle("Lista de Quartos\n");
+        setTitle("Listar Quartos ");
 
         PnlListaCurso.setBackground(new java.awt.Color(255, 255, 255));
-        PnlListaCurso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Quartos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        PnlListaCurso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar Quartos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
 
         TblListaCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,7 +102,7 @@ public class FrmListaQuarto extends javax.swing.JInternalFrame {
                     .addComponent(BtnPesquisar))
                 .addGap(26, 26, 26)
                 .addComponent(SpnlListaCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(BtnVoltar)
                 .addContainerGap())
         );

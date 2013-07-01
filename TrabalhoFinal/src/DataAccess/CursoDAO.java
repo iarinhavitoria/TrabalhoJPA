@@ -62,7 +62,7 @@ public class CursoDAO {
             
         } catch (SQLException ex) {
             Logger.getLogger(CursoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            throw new RuntimeException();
         }
     }
 

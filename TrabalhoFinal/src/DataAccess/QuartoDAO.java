@@ -173,7 +173,7 @@ public class QuartoDAO {
     }
     
     private void carregaItens(int id, Quarto quarto) throws SQLException {
-        PreparedStatement comando2 = bd.getConexao().prepareStatement("select * from materialporquarto where idvenda = ?");
+        PreparedStatement comando2 = bd.getConexao().prepareStatement("select * from materialporquarto where idmaterial = ?");
         comando2.setInt(1, id);
         ResultSet resultado2 = comando2.executeQuery();
 
@@ -190,4 +190,30 @@ public class QuartoDAO {
         quarto.setMats(materiais);
     }
     
+    public List<Quarto> listarOrdenado() {
+        try {
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from quartos order by banheiro desc");
+            ResultSet resultado = comando.executeQuery();
+            
+            List<Quarto> quartos = new LinkedList<>();
+            while (resultado.next()) {
+                
+                Quarto tmp = new Quarto(0,0,false);
+                
+                tmp.setIdQuarto(resultado.getInt("idquarto"));
+                tmp.setNumero(resultado.getInt("numero"));
+                tmp.setCodpredio(resultado.getInt("idpredio"));
+                tmp.setBanheiro(resultado.getBoolean("banheiro"));
+                // Pega o objeto e coloca na lista
+                
+                carregaItens(tmp.getIdQuarto(), tmp);
+                
+                quartos.add(tmp);
+            }
+            return quartos;
+        } catch (SQLException ex) {
+            Logger.getLogger(QuartoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

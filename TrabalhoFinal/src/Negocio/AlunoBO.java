@@ -5,7 +5,9 @@
 package Negocio;
 
 import DataAccess.AlunoDAO;
+import DataAccess.CursoDAO;
 import DomainModel.Aluno;
+import DomainModel.Curso;
 import java.util.List;
 
 /**
@@ -29,10 +31,10 @@ public class AlunoBO {
             throw new RuntimeException("O CPF esta além do tamanho permitido!");
         }
         if(aluno.getRg().trim().length() == 0){
-            throw new RuntimeException("O CPF nao pode ser vazio!");
+            throw new RuntimeException("O RG nao pode ser vazio!");
         }
         if (aluno.getRg().length() > 14){
-            throw new RuntimeException("O CPF esta além do tamanho permitido!");
+            throw new RuntimeException("O RG esta além do tamanho permitido!");
         }
         if(aluno.getTelefone().trim().length() == 0){
             throw new RuntimeException("O Telefone nao pode ser vazio!");
@@ -43,7 +45,7 @@ public class AlunoBO {
         if(aluno.getEmail().trim().length() == 0){
             throw new RuntimeException("O Email nao pode ser vazio!");
         }
-        if (aluno.getEmail().length() > 14){
+        if (aluno.getEmail().length() > 30){
             throw new RuntimeException("O Email esta além do tamanho permitido!");
         }
         if(aluno.getNomeresp().trim().length() == 0){
@@ -61,6 +63,14 @@ public class AlunoBO {
         if(aluno.getIdcurso() == 0){
             throw new RuntimeException("O Codigo do Curso nao pode ser 0!");
         }
+        
+        try{
+            CursoDAO cdao = new CursoDAO();
+            cdao.Abrir(aluno.getIdcurso());
+        } catch(Exception ex){
+            throw new RuntimeException("Não existe curso referente ao ID informado!");
+        }
+        
         alunoDAO.Salvar(aluno);
         return true;
     }

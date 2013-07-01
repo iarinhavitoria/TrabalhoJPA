@@ -47,7 +47,7 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Cadastrar Pedido">
+            <TitledBorder title="Cadastrar Predio">
               <Font PropertyName="font" name="Comic Sans MS" size="18" style="3"/>
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
@@ -58,7 +58,6 @@
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastrar Predio"/>
-        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Predio"/>
       </AccessibilityProperties>
 
       <Layout>
@@ -114,7 +113,7 @@
                       <Component id="BtnLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

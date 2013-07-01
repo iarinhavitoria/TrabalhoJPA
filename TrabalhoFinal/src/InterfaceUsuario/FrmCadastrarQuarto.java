@@ -378,7 +378,7 @@ public class FrmCadastrarQuarto extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar! Consulte o administrador do sistema!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 

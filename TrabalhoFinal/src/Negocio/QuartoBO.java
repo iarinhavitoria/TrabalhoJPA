@@ -38,5 +38,8 @@ public class QuartoBO {
     public List<Quarto> buscar(Quarto filtro){
         return quartoDAO.buscar(filtro);
     }
+    public List<Quarto> listarOrdenado(){
+        return quartoDAO.listarOrdenado();
+    }
 }
 

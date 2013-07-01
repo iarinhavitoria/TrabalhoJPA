@@ -67,10 +67,10 @@ public class FrmListaFuncionario extends javax.swing.JInternalFrame {
         BtnPesquisar = new javax.swing.JButton();
         BtnVoltar = new javax.swing.JButton();
 
-        setTitle("Lista de Funcionarios\n\n");
+        setTitle("Listar Funcionarios  ");
 
         PnlListaFuncionario.setBackground(new java.awt.Color(255, 255, 255));
-        PnlListaFuncionario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Funcionarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        PnlListaFuncionario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar Funcionarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
 
         TblListaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +136,7 @@ public class FrmListaFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(BtnPesquisar))
                 .addGap(26, 26, 26)
                 .addComponent(SpnlListaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(BtnVoltar)
                 .addContainerGap())
         );

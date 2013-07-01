@@ -35,16 +35,16 @@ public class AlocacaoDAO {
                 comando.setInt(1, obj.getIdaluno());
                 comando.setInt(2, obj.getIdquarto());
                 comando.setString(3, obj.getSemestreletivo());
-                comando.setDate(4,(Date) obj.getDataEntrada());
-                comando.setDate(5,(Date) obj.getDataSaida());
+                comando.setDate(4,new java.sql.Date(obj.getDataEntrada().getTime()));
+                comando.setDate(5,new java.sql.Date(obj.getDataSaida().getTime()));
                 comando.executeUpdate();
             } else {
                 PreparedStatement comando = bd.getConexao().prepareStatement("update alocacao set idaluno=?,idquarto=?,semestreletivo=?,dataentrada=?,datasaida=? where idalocacao = ?");
                 comando.setInt(1, obj.getIdaluno());
                 comando.setInt(2, obj.getIdquarto());
                 comando.setString(3, obj.getSemestreletivo());
-                comando.setDate(4,(Date) obj.getDataEntrada());
-                comando.setDate(5,(Date) obj.getDataSaida());
+                comando.setDate(4,new java.sql.Date(obj.getDataEntrada().getTime()));
+                comando.setDate(5,new java.sql.Date(obj.getDataSaida().getTime()));
                 comando.setInt(6, obj.getIdalocacao());
                 comando.executeUpdate();
             }

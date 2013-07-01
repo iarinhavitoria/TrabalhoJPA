@@ -129,7 +129,7 @@ public class FrmEditarTarefas extends javax.swing.JInternalFrame {
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnApagar))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,7 +170,7 @@ public class FrmEditarTarefas extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
        
     }//GEN-LAST:event_BtnSalvarActionPerformed

@@ -38,7 +38,7 @@ public class FrmLogin extends javax.swing.JFrame {
         setTitle("Login");
 
         PnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        PnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", 0, 0, new java.awt.Font("Comic Sans MS", 2, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        PnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
         PnlLogin.setToolTipText("Login");
         PnlLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

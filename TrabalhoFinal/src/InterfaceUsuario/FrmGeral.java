@@ -4,10 +4,14 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Alocacao;
 import DomainModel.Aluno;
 import DomainModel.Quarto;
+import Negocio.AlocacaoBO;
 import Negocio.AlunoBO;
+import Negocio.AlunoTarefaBO;
 import Negocio.QuartoBO;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -61,7 +65,10 @@ public class FrmGeral extends javax.swing.JFrame {
         MnAdministrador = new javax.swing.JMenu();
         MniAdministrador = new javax.swing.JMenuItem();
         MnAlocar = new javax.swing.JMenu();
+        MniAlocar = new javax.swing.JMenuItem();
+        MniAlunoTarefa = new javax.swing.JMenuItem();
         MenuSair = new javax.swing.JMenu();
+        MniSair = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -231,12 +238,29 @@ public class FrmGeral extends javax.swing.JFrame {
 
         jMenuBar1.add(MnAdministrador);
 
-        MnAlocar.setText("Alocar");
+        MnAlocar.setText("Gerar");
         MnAlocar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MnAlocarMouseClicked(evt);
             }
         });
+
+        MniAlocar.setText("Alocação");
+        MniAlocar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAlocarActionPerformed(evt);
+            }
+        });
+        MnAlocar.add(MniAlocar);
+
+        MniAlunoTarefa.setText("Tarefas por Aluno");
+        MniAlunoTarefa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAlunoTarefaActionPerformed(evt);
+            }
+        });
+        MnAlocar.add(MniAlunoTarefa);
+
         jMenuBar1.add(MnAlocar);
 
         MenuSair.setText("Sair");
@@ -245,6 +269,15 @@ public class FrmGeral extends javax.swing.JFrame {
                 MenuSairActionPerformed(evt);
             }
         });
+
+        MniSair.setText("Sair");
+        MniSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniSairActionPerformed(evt);
+            }
+        });
+        MenuSair.add(MniSair);
+
         jMenuBar1.add(MenuSair);
 
         setJMenuBar(jMenuBar1);
@@ -329,10 +362,7 @@ public class FrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_MniMaterial2ActionPerformed
 
     private void MenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSairActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
-                == 0){
-            this.dispose();
-        }
+        
     }//GEN-LAST:event_MenuSairActionPerformed
 
     private void MniAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAlunoActionPerformed
@@ -376,21 +406,53 @@ public class FrmGeral extends javax.swing.JFrame {
     }//GEN-LAST:event_MniQuartoActionPerformed
 
     private void MnAlocarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MnAlocarMouseClicked
-        AlunoBO bo = new AlunoBO();
-        QuartoBO qbo = new QuartoBO();
-        List<Aluno> alunos = bo.listarOrdenado();
-        List<Quarto> quartos = qbo.listarTodos();
-        
-        for(Quarto q : quartos){
-            for(Aluno  a : alunos){
-                for (int x=1;x<=16;x++){
-                    
-                }
-            }
-        }
         
         
     }//GEN-LAST:event_MnAlocarMouseClicked
+
+    private void MniSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniSairActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Sair?") 
+                == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_MniSairActionPerformed
+
+    private void MniAlocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAlocarActionPerformed
+/*        AlunoBO bo = new AlunoBO();
+        QuartoBO qbo = new QuartoBO();
+        AlocacaoBO abo = new AlocacaoBO();
+        List<Aluno> alunos = bo.listarOrdenado();
+        List<Quarto> quartos = qbo.listarOrdenado();
+        List<Alocacao> alocar = new LinkedList();
+        
+        
+        for(Quarto q : quartos){
+            for(int x=1;x<=16;x++){
+                for (Aluno  a : alunos){
+                    
+                }
+            }
+        }*/
+        try{
+            AlocacaoBO alocacaoBO = new AlocacaoBO();
+            alocacaoBO.Salvar();
+            
+           JOptionPane.showMessageDialog(rootPane, "Alocação Realizada com Sucesso","Sucesso", JOptionPane.ERROR_MESSAGE); 
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),"Erro", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_MniAlocarActionPerformed
+
+    private void MniAlunoTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAlunoTarefaActionPerformed
+        try{
+            AlunoTarefaBO atbo = new AlunoTarefaBO();
+            atbo.Salvar();
+            
+           JOptionPane.showMessageDialog(rootPane, "Tarefas Distribuidas com Sucesso","Sucesso",JOptionPane.INFORMATION_MESSAGE); 
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_MniAlunoTarefaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,8 +496,10 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenu MnCadastro;
     private javax.swing.JMenu MnListar;
     private javax.swing.JMenuItem MniAdministrador;
+    private javax.swing.JMenuItem MniAlocar;
     private javax.swing.JMenuItem MniAluno;
     private javax.swing.JMenuItem MniAluno2;
+    private javax.swing.JMenuItem MniAlunoTarefa;
     private javax.swing.JMenuItem MniCampus;
     private javax.swing.JMenuItem MniCampus2;
     private javax.swing.JMenuItem MniCurso;
@@ -447,6 +511,7 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenuItem MniPredio;
     private javax.swing.JMenuItem MniPredio2;
     private javax.swing.JMenuItem MniQuarto;
+    private javax.swing.JMenuItem MniSair;
     private javax.swing.JMenuItem MniTarefas;
     private javax.swing.JMenuItem MniTarefas1;
     private javax.swing.JMenu jMenu1;

@@ -120,18 +120,14 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
         PnlEditarPedidoLayout.setHorizontalGroup(
             PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlEditarPedidoLayout.createSequentialGroup()
-                .addGroup(PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PnlEditarPedidoLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LblCodCampus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LblIdFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(LblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlEditarPedidoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BrnSalvar)
-                        .addGap(44, 44, 44)))
+                .addGap(28, 28, 28)
+                .addGroup(PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(LblCodCampus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LblIdFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addComponent(LblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                    .addComponent(BrnSalvar))
+                .addGap(18, 18, 18)
                 .addGroup(PnlEditarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PnlEditarPedidoLayout.createSequentialGroup()
@@ -166,7 +162,7 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnApagar))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,7 +209,7 @@ public class FrmEditarPredio extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_BrnSalvarActionPerformed
 

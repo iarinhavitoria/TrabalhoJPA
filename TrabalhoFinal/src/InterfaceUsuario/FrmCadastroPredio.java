@@ -45,7 +45,7 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
         setTitle("Cadastrar Predio");
 
         PnlPedido.setBackground(new java.awt.Color(255, 255, 255));
-        PnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        PnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Predio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 3, 18), new java.awt.Color(0, 0, 0))); // NOI18N
         PnlPedido.setToolTipText("Predio");
         PnlPedido.setAutoscrolls(true);
 
@@ -132,7 +132,7 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
                     .addComponent(BrnSalvar)
                     .addComponent(BtnLimpar)
                     .addComponent(BtnCancelar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,7 +153,6 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
         );
 
         PnlPedido.getAccessibleContext().setAccessibleName("Cadastrar Predio");
-        PnlPedido.getAccessibleContext().setAccessibleDescription("Predio");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,7 +182,7 @@ public class FrmCadastroPredio extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!");
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_BrnSalvarActionPerformed
 
