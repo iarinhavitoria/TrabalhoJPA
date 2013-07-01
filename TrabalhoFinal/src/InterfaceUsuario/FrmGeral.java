@@ -4,6 +4,12 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Aluno;
+import DomainModel.Quarto;
+import Negocio.AlunoBO;
+import Negocio.QuartoBO;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,6 +60,7 @@ public class FrmGeral extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         MnAdministrador = new javax.swing.JMenu();
         MniAdministrador = new javax.swing.JMenuItem();
+        MnAlocar = new javax.swing.JMenu();
         MenuSair = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -224,6 +231,14 @@ public class FrmGeral extends javax.swing.JFrame {
 
         jMenuBar1.add(MnAdministrador);
 
+        MnAlocar.setText("Alocar");
+        MnAlocar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MnAlocarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(MnAlocar);
+
         MenuSair.setText("Sair");
         MenuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,6 +375,23 @@ public class FrmGeral extends javax.swing.JFrame {
         janela.setVisible(true);
     }//GEN-LAST:event_MniQuartoActionPerformed
 
+    private void MnAlocarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MnAlocarMouseClicked
+        AlunoBO bo = new AlunoBO();
+        QuartoBO qbo = new QuartoBO();
+        List<Aluno> alunos = bo.listarOrdenado();
+        List<Quarto> quartos = qbo.listarTodos();
+        
+        for(Quarto q : quartos){
+            for(Aluno  a : alunos){
+                for (int x=1;x<=16;x++){
+                    
+                }
+            }
+        }
+        
+        
+    }//GEN-LAST:event_MnAlocarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -398,6 +430,7 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenu MenuSair;
     private javax.swing.JMenu MnAdministrador;
+    private javax.swing.JMenu MnAlocar;
     private javax.swing.JMenu MnCadastro;
     private javax.swing.JMenu MnListar;
     private javax.swing.JMenuItem MniAdministrador;

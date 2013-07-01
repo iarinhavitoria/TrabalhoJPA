@@ -198,6 +198,14 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MnAlocar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alocar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MnAlocarMouseClicked"/>
+          </Events>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="MenuSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>

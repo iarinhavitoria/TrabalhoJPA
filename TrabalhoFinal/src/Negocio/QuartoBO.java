@@ -6,6 +6,7 @@ package Negocio;
 
 import DataAccess.QuartoDAO;
 import DomainModel.Quarto;
+import java.util.List;
 
 /**
  *
@@ -29,6 +30,13 @@ public class QuartoBO {
     }
     public void Apagar(Quarto quarto){
         quartoDAO.Apagar(quarto);
+    }
+    public List<Quarto> listarTodos(){
+        return quartoDAO.listarTodos();
+    }
+    
+    public List<Quarto> buscar(Quarto filtro){
+        return quartoDAO.buscar(filtro);
     }
 }
 

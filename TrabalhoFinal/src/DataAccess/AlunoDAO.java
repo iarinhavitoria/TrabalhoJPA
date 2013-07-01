@@ -186,5 +186,32 @@ public class AlunoDAO {
         }
     }
     
-    
+    public List<Aluno> listarOrdenado() {
+        try {
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from alunos order by media desc");
+            ResultSet resultado = comando.executeQuery();
+            
+            List<Aluno> aluno = new LinkedList<>();
+            while (resultado.next()) {
+                Aluno tmp = new Aluno();
+                
+                tmp.setIdAluno(resultado.getInt("idaluno"));
+                tmp.setNome(resultado.getString("nome"));
+                tmp.setRg(resultado.getString("rg"));
+                tmp.setCpf(resultado.getString("cpf"));
+                tmp.setTelefone(resultado.getString("telefone"));
+                tmp.setEmail(resultado.getString("email"));
+                tmp.setMedia(resultado.getDouble("media"));
+                tmp.setNomeresp(resultado.getString("nomeresp"));
+                tmp.setTelefoneresp(resultado.getString("telefoneresp"));
+                tmp.setIdcurso(resultado.getInt("idcurso"));
+                
+                aluno.add(tmp);
+            }
+            return aluno;
+        } catch (SQLException ex) {
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

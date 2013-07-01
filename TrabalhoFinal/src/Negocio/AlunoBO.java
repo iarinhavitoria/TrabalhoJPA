@@ -77,4 +77,7 @@ public class AlunoBO {
     public List<Aluno> buscar(Aluno filtro){
         return alunoDAO.buscar(filtro);
     }
+    public List<Aluno> listarOrdenado(){
+        return alunoDAO.listarOrdenado();
+    }
 }
