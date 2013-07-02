@@ -15,14 +15,14 @@ import java.util.List;
 /**
  *
  * @author Iara
- * 
-dataentrada date
-datasaida date
+ * * 
+dataentrada date datasaida date
  */
 public class AlocacaoBO {
+
     private AlocacaoDAO alocacaoDAO = new AlocacaoDAO();
-    
-    public void Salvar(){
+
+    public void Salvar() {
 //        if(alocacao.getIdaluno() == 0){
 //            throw new RuntimeException("O Codigo do Aluno nao pode ser igual a 0!");
 //        }
@@ -36,62 +36,72 @@ public class AlocacaoBO {
 //            throw new RuntimeException("O semestre letivo esta além do tamanho permitido!");
 //        }
 //        alocacaoDAO.Salvar(alocacao);
-        
+
         AlunoBO bo = new AlunoBO();
         QuartoBO qbo = new QuartoBO();
-        
+
         List<Aluno> alunos = bo.listarOrdenado();
         List<Quarto> quartos = qbo.listarOrdenado();
         List<Alocacao> alocar = new LinkedList();
-        
+
         int qtd = quartos.size() * 16;
-        if(alunos.size() > qtd){
+        if (alunos.size() > qtd) {
             throw new RuntimeException("Não há vagas o suficiente.");
         }
-        
-        if(alunos.isEmpty()){
+
+        if (alunos.isEmpty()) {
             throw new RuntimeException("Não há alunos cadastrados.");
         }
-        if(quartos.isEmpty()){
+        if (quartos.isEmpty()) {
             throw new RuntimeException("Não há quartos cadastrados.");
         }
-       
+        
         //Gera a lista de alocação
-        for(Quarto q : quartos){
-            for(int x=1;x<=16;x++){
-                //for (Aluno a : alunos){
-                for (int y=0; y < alunos.size(); y++){
-                    Aluno a = alunos.get(y);
-                Alocacao alocacao = new Alocacao();
-                    
+        int nu = 0;
+        for (int z = 0; z < quartos.size(); z++) {
+            Quarto q = quartos.get(z);
+            int y = 0;
+            while(y < 16){
+            //for (int y = 0; (nu < (alunos.size()) || (y == 15)); y++) {
+                if(nu < alunos.size()){
+                    Aluno a = alunos.get(nu);
+
+                    Alocacao alocacao = new Alocacao();
+
                     alocacao.setIdaluno(a.getIdAluno());
                     alocacao.setIdquarto(q.getIdQuarto());
                     alocacao.setDataEntrada(new Date());
-                    
+
                     Date dt = new Date();
-                    dt.setYear(dt.getYear()+1);
+                    dt.setYear(dt.getYear() + 1);
                     alocacao.setDataSaida(dt);
-                 
+
                     alocar.add(alocacao);
-                    alunos.remove(a);
+                    //alunos.remove(a);
+                    nu++;
                 }
+                y++;
             }
-        }
+            }
         
-        for (Alocacao al: alocar){
+        alocacaoDAO.ApagarTudo();
+        for (int u = 0; u < alocar.size(); u++) {
+            Alocacao al = alocar.get(u);
             alocacaoDAO.Salvar(al);
         }
 
-        
+
     }
-    public Alocacao Abrir(int codigo){
+
+    public Alocacao Abrir(int codigo) {
         return alocacaoDAO.Abrir(codigo);
     }
-    public void Apagar(Alocacao alocacao){
+
+    public void Apagar(Alocacao alocacao) {
         alocacaoDAO.Apagar(alocacao);
     }
-    public void ApagarTudo(){
+
+    public void ApagarTudo() {
         alocacaoDAO.ApagarTudo();
     }
-    
 }

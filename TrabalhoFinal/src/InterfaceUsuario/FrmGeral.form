@@ -173,9 +173,17 @@
             <Property name="text" type="java.lang.String" value="Relatorio"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="MniAloca&#xe7;ao">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+                <Property name="text" type="java.lang.String" value="Aloca&#xe7;&#xe3;o"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MniAloca&#xe7;aoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MniTarefasproAlunos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tarefas por Aluno"/>
               </Properties>
             </MenuItem>
           </SubComponents>

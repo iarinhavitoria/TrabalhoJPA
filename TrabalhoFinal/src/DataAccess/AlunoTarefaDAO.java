@@ -83,6 +83,15 @@ public class AlunoTarefaDAO {
             return false;
         }
     }
+    
+    public void ApagarTudo() {
+        try {
+            PreparedStatement comando = bd.getConexao().prepareStatement("delete from alunosportarefa");
+            comando.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlunoTarefaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public List<AlunoTarefa> listarTodos() {
         try {

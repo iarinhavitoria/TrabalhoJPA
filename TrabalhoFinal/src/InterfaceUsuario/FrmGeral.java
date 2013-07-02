@@ -4,6 +4,7 @@
  */
 package InterfaceUsuario;
 
+import DataAccess.BancodeDados;
 import DomainModel.Alocacao;
 import DomainModel.Aluno;
 import DomainModel.Quarto;
@@ -11,10 +12,22 @@ import Negocio.AlocacaoBO;
 import Negocio.AlunoBO;
 import Negocio.AlunoTarefaBO;
 import Negocio.QuartoBO;
+import java.net.URL;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -61,7 +74,8 @@ public class FrmGeral extends javax.swing.JFrame {
         MniTarefas1 = new javax.swing.JMenuItem();
         MniMaterial2 = new javax.swing.JMenuItem();
         MenuRelatorio = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MniAlocaçao = new javax.swing.JMenuItem();
+        MniTarefasproAlunos = new javax.swing.JMenuItem();
         MnAdministrador = new javax.swing.JMenu();
         MniAdministrador = new javax.swing.JMenuItem();
         MnAlocar = new javax.swing.JMenu();
@@ -216,8 +230,16 @@ public class FrmGeral extends javax.swing.JFrame {
 
         MenuRelatorio.setText("Relatorio");
 
-        jMenuItem1.setText("jMenuItem1");
-        MenuRelatorio.add(jMenuItem1);
+        MniAlocaçao.setText("Alocação");
+        MniAlocaçao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MniAlocaçaoActionPerformed(evt);
+            }
+        });
+        MenuRelatorio.add(MniAlocaçao);
+
+        MniTarefasproAlunos.setText("Tarefas por Aluno");
+        MenuRelatorio.add(MniTarefasproAlunos);
 
         jMenuBar1.add(MenuRelatorio);
 
@@ -454,6 +476,41 @@ public class FrmGeral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MniAlunoTarefaActionPerformed
 
+    private void MniAlocaçaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MniAlocaçaoActionPerformed
+        exibeRelatorioJasper("Alocacao.jasper");
+    }//GEN-LAST:event_MniAlocaçaoActionPerformed
+
+    private void exibeRelatorioJasper(String relatorio) {
+
+        Connection conexao;
+        try {
+            Map parameterMap = new HashMap();
+
+            BancodeDados bd = new BancodeDados();
+
+            // Pega a conexão com o banco de dados
+            conexao = bd.getConexao();
+
+            // Pega o caminho do arquivo do relatório
+//            URL arquivo = getClass().getResource(relatorio);
+            String arquivo = System.getProperty("user.dir")+"/src/Relatorios/Relatorios/"+relatorio;
+            
+            // Carrega o relatório na memória
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
+            
+            // Carrega os dados do relatório
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameterMap, conexao);
+            
+            // Visualiza o relatório
+            JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
+            
+            jrviewer.setVisible(true);
+        
+        } catch (JRException ex) {
+            Logger.getLogger(JasperReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -497,6 +554,7 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenu MnListar;
     private javax.swing.JMenuItem MniAdministrador;
     private javax.swing.JMenuItem MniAlocar;
+    private javax.swing.JMenuItem MniAlocaçao;
     private javax.swing.JMenuItem MniAluno;
     private javax.swing.JMenuItem MniAluno2;
     private javax.swing.JMenuItem MniAlunoTarefa;
@@ -514,11 +572,11 @@ public class FrmGeral extends javax.swing.JFrame {
     private javax.swing.JMenuItem MniSair;
     private javax.swing.JMenuItem MniTarefas;
     private javax.swing.JMenuItem MniTarefas1;
+    private javax.swing.JMenuItem MniTarefasproAlunos;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,7 +39,7 @@ public class AlunoTarefaBO {
         //Gera a lista de alocação
         for(TarefasSemanais ts : tarefas){
             for (Aluno a : alunos){
-                
+                alunotarefaDAO.ApagarTudo();
                 AlunoTarefa at = new AlunoTarefa();
                 
                 at.setIdaluno(a.getIdAluno());

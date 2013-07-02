@@ -132,24 +132,24 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="LblMedia" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="TxtMedia" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="TxtMedia" min="-2" max="-2" attributes="0"/>
                       </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="LblIdCurso" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtIdCurso" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtIdCurso" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LblIdCurso" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="TxtNomeResponsavel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="LblResponsavlel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" pref="22" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="TxtTelefoneResponsavel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="LblTelefoneResponsavel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -157,7 +157,7 @@
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="BtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="BtnLimparCampos" alignment="3" min="-2" max="-2" attributes="0"/>
