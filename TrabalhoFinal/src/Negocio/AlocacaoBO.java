@@ -59,8 +59,10 @@ public class AlocacaoBO {
         //Gera a lista de alocação
         for(Quarto q : quartos){
             for(int x=1;x<=16;x++){
-                for (Aluno  a : alunos){
-                    Alocacao alocacao = new Alocacao();
+                //for (Aluno a : alunos){
+                for (int y=0; y < alunos.size(); y++){
+                    Aluno a = alunos.get(y);
+                Alocacao alocacao = new Alocacao();
                     
                     alocacao.setIdaluno(a.getIdAluno());
                     alocacao.setIdquarto(q.getIdQuarto());
@@ -87,6 +89,9 @@ public class AlocacaoBO {
     }
     public void Apagar(Alocacao alocacao){
         alocacaoDAO.Apagar(alocacao);
+    }
+    public void ApagarTudo(){
+        alocacaoDAO.ApagarTudo();
     }
     
 }

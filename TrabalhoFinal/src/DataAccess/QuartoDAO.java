@@ -89,7 +89,7 @@ public class QuartoDAO {
             quarto.setCodpredio(resultado.getInt("idpredio"));
             quarto.setBanheiro(resultado.getBoolean("banheiro"));
             
-            carregaItens(codigo, quarto);
+            carregaMateriais(codigo, quarto);
 
             return quarto;
 
@@ -131,7 +131,7 @@ public class QuartoDAO {
                 tmp.setBanheiro(resultado.getBoolean("banheiro"));
                 // Pega o objeto e coloca na lista
                 
-                carregaItens(tmp.getIdQuarto(), tmp);
+                carregaMateriais(tmp.getIdQuarto(), tmp);
                 
                 quartos.add(tmp);
             }
@@ -161,7 +161,7 @@ public class QuartoDAO {
                 tmp.setCodpredio(resultado.getInt("idpredio"));
                 
                 
-                carregaItens(tmp.getIdQuarto(), tmp);
+                carregaMateriais(tmp.getIdQuarto(), tmp);
                 
                 quartos.add(tmp);
             }
@@ -172,8 +172,8 @@ public class QuartoDAO {
         }
     }
     
-    private void carregaItens(int id, Quarto quarto) throws SQLException {
-        PreparedStatement comando2 = bd.getConexao().prepareStatement("select * from materialporquarto where idmaterial = ?");
+    private void carregaMateriais(int id, Quarto quarto) throws SQLException {
+        PreparedStatement comando2 = bd.getConexao().prepareStatement("select * from materialporquarto where idquarto = ?");
         comando2.setInt(1, id);
         ResultSet resultado2 = comando2.executeQuery();
 
@@ -184,6 +184,7 @@ public class QuartoDAO {
             tmp.setIdMaterialQuarto(resultado2.getInt("idmaterialquarto"));
             tmp.setQtde(resultado2.getInt("qtde"));
             tmp.setMaterial(mat.Abrir(resultado2.getInt("idmaterial")));
+            
             materiais.add(tmp);
         }
 
@@ -206,7 +207,7 @@ public class QuartoDAO {
                 tmp.setBanheiro(resultado.getBoolean("banheiro"));
                 // Pega o objeto e coloca na lista
                 
-                carregaItens(tmp.getIdQuarto(), tmp);
+                carregaMateriais(tmp.getIdQuarto(), tmp);
                 
                 quartos.add(tmp);
             }

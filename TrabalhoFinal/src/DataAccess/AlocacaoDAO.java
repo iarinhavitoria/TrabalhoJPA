@@ -93,6 +93,15 @@ public class AlocacaoDAO {
         }
     }
 
+    public void ApagarTudo() {
+        try {
+            PreparedStatement comando = bd.getConexao().prepareStatement("delete from alocacao");
+            comando.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlocacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<Alocacao> listarTodos() {
         try {
             PreparedStatement comando = bd.getConexao().prepareStatement("select * from alocacao");

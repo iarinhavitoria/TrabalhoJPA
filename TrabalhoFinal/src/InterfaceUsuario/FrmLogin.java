@@ -4,6 +4,10 @@
  */
 package InterfaceUsuario;
 
+import DomainModel.Administrador;
+import Negocio.AdministradorBO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paulo_000
@@ -27,12 +31,11 @@ public class FrmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         PnlLogin = new javax.swing.JPanel();
-        LblNome = new javax.swing.JLabel();
+        LblUsuario = new javax.swing.JLabel();
         LblSenha = new javax.swing.JLabel();
         BtnEntrar = new javax.swing.JButton();
-        BtnSair = new javax.swing.JButton();
-        TxtxNome = new javax.swing.JTextField();
-        TxtxSenha = new javax.swing.JTextField();
+        TxtUsuario = new javax.swing.JTextField();
+        TxtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -42,7 +45,7 @@ public class FrmLogin extends javax.swing.JFrame {
         PnlLogin.setToolTipText("Login");
         PnlLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        LblNome.setText("Nome: ");
+        LblUsuario.setText("Usuario:");
 
         LblSenha.setText("Senha: ");
 
@@ -53,11 +56,9 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        BtnSair.setText("Sair");
-
-        TxtxNome.addActionListener(new java.awt.event.ActionListener() {
+        TxtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtxNomeActionPerformed(evt);
+                TxtUsuarioActionPerformed(evt);
             }
         });
 
@@ -68,33 +69,28 @@ public class FrmLogin extends javax.swing.JFrame {
             .addGroup(PnlLoginLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(PnlLoginLayout.createSequentialGroup()
-                        .addComponent(BtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TxtxSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtxNome, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(TxtSenha))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         PnlLoginLayout.setVerticalGroup(
             PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlLoginLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(33, 33, 33)
                 .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblNome)
-                    .addComponent(TxtxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblUsuario)
+                    .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LblSenha)
-                    .addComponent(TxtxSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(PnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnEntrar)
-                    .addComponent(BtnSair))
+                    .addComponent(TxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(BtnEntrar)
                 .addGap(21, 21, 21))
         );
 
@@ -118,12 +114,25 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtxNomeActionPerformed
+    private void TxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtxNomeActionPerformed
+    }//GEN-LAST:event_TxtUsuarioActionPerformed
 
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
-        // TODO add your handling code here:
+        Administrador adminObt = new Administrador();
+        AdministradorBO adbo = new AdministradorBO();
+        
+        adminObt = adbo.Abrir(TxtUsuario.getText());
+        
+        if ((adminObt.getUsuario().equals(TxtUsuario.getText()))&&(adminObt.getSenha().equals(TxtSenha.getText()))){
+                FrmGeral janela1 = new FrmGeral();
+                janela1.setVisible(true);
+                this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Usuario ou Senha Incorreto!");
+            TxtUsuario.setText("");
+            TxtSenha.setText("");
+        }
     }//GEN-LAST:event_BtnEntrarActionPerformed
 
     /**
@@ -162,11 +171,10 @@ public class FrmLogin extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEntrar;
-    private javax.swing.JButton BtnSair;
-    private javax.swing.JLabel LblNome;
     private javax.swing.JLabel LblSenha;
+    private javax.swing.JLabel LblUsuario;
     private javax.swing.JPanel PnlLogin;
-    private javax.swing.JTextField TxtxNome;
-    private javax.swing.JTextField TxtxSenha;
+    private javax.swing.JPasswordField TxtSenha;
+    private javax.swing.JTextField TxtUsuario;
     // End of variables declaration//GEN-END:variables
 }

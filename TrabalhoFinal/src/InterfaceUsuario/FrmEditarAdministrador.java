@@ -4,6 +4,7 @@
  */
 package InterfaceUsuario;
 
+import DataAccess.AdministradorDAO;
 import DomainModel.Administrador;
 import Negocio.AdministradorBO;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
     
     Administrador admin;
     AdministradorBO bo;
+    AdministradorDAO adao;
     /**
      * Creates new form FrmEditarAdministrador
      */
@@ -27,7 +29,6 @@ public class FrmEditarAdministrador extends javax.swing.JInternalFrame {
     }
     
     private void carregaCampos() {
-        
         TxtUsuario.setText(admin.getUsuario());
         TxtSenha.setText(admin.getSenha());
         

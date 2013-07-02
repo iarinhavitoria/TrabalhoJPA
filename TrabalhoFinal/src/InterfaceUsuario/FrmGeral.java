@@ -437,9 +437,9 @@ public class FrmGeral extends javax.swing.JFrame {
             AlocacaoBO alocacaoBO = new AlocacaoBO();
             alocacaoBO.Salvar();
             
-           JOptionPane.showMessageDialog(rootPane, "Alocação Realizada com Sucesso","Sucesso", JOptionPane.ERROR_MESSAGE); 
+           JOptionPane.showMessageDialog(rootPane, "Alocação Realizada com Sucesso","Sucesso", JOptionPane.INFORMATION_MESSAGE); 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),"Erro", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_MniAlocarActionPerformed
 

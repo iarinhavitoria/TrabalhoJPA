@@ -30,6 +30,10 @@ public class AdministradorBO {
     public Administrador Abrir(int codigo){
         return administradorDAO.Abrir(codigo);
     }
+    public Administrador Abrir(String usuario){
+        return administradorDAO.Abrir(usuario);
+    }
+    
     public void Apagar(Administrador administrador){
         administradorDAO.Apagar(administrador);
     }

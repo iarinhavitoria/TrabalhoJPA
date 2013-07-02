@@ -70,6 +70,28 @@ public class AdministradorDAO {
             return null;
         }
     }
+    
+    public Administrador Abrir(String usuario) {
+        try {
+            Administrador administrador = new Administrador ();
+
+            PreparedStatement comando = bd.getConexao().prepareStatement("select * from administrador where usuario like ?");
+            comando.setString(1, usuario);
+            ResultSet resultado = comando.executeQuery();
+
+            resultado.first();
+            
+            administrador.setIdAdministrador(resultado.getInt("idadministrador"));
+            administrador.setUsuario(resultado.getString("usuario"));
+            administrador.setSenha(resultado.getString("senha"));
+            
+            return administrador;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministradorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public boolean Apagar(Administrador obj) {
         try {
