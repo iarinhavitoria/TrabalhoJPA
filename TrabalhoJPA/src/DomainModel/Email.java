@@ -4,17 +4,24 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Iara
  */
 @Entity
-public class Email {
+public class Email implements Serializable {
     @Column (name="Email")
     private String email;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long ID;
     
     public Email(){
         this.email = "teste@ol.com.br";
@@ -26,5 +33,13 @@ public class Email {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 }
