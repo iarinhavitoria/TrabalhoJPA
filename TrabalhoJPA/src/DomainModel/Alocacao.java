@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +24,11 @@ public class Alocacao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idalocacao;
+    
+    @ManyToOne
     private int idaluno;
+    
+    @ManyToOne
     private int idquarto;
     
     @Temporal(TemporalType.DATE)
@@ -39,8 +44,8 @@ public class Alocacao implements Serializable{
     
     public Alocacao(){
         idalocacao = 0;
-        idaluno = 0;
-        idquarto = 0;
+        //idaluno = 0;
+        //idquarto = 0;
         semestreletivo = "";
         dataEntrada = new Date();
         dataSaida = new Date();

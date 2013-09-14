@@ -4,10 +4,10 @@
  */
 package DomainModel;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -17,8 +17,9 @@ public class AlunoTarefa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idalunotarefa;
-    @Column(nullable=false)
+    @ManyToMany
     private int idaluno;
+    @ManyToMany
     private int idtarefa;
 
     public int getIdalunotarefa() {

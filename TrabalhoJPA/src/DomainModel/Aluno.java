@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -36,6 +37,7 @@ public class Aluno implements Serializable{
     private String nomeresp;
     @Column(nullable=false)
     private String telefoneresp;
+    @ManyToOne
     private int idcurso;
     
     public Aluno(){

@@ -4,6 +4,7 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.Id;
  * @author Iara
  */
 @Entity
-public class Funcionario {
+public class Funcionario implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int idFuncionario;

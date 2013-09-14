@@ -4,26 +4,31 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Iara
  */
 @Entity
-public class Predio {
+public class Predio implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int idPredio;
     @Column(name="Nome",length=200)
     private String nome;
-    @Column(nullable=false)
-    private int codfuncionario;
-    private int codcampus;
+    @ManyToOne
+    private Funcionario funcionario;
+    @ManyToOne
+    private Campus campus;
+
+    
     
     public Predio(int id, String nome){
         this.idPredio = id;
@@ -46,20 +51,20 @@ public class Predio {
         this.nome = nome;
     }
 
-    public int getCodfuncionario() {
-        return codfuncionario;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setCodfuncionario(int codfuncionario) {
-        this.codfuncionario = codfuncionario;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
-    public int getCodcampus() {
-        return codcampus;
+    public Campus getCampus() {
+        return campus;
     }
 
-    public void setCodcampus(int codcampus) {
-        this.codcampus = codcampus;
+    public void setCampus(Campus campus) {
+        this.campus = campus;
     }
     
     

@@ -4,25 +4,26 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Iara
  */
 @Entity
-public class EstoqueGeral {
+public class EstoqueGeral implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int idEstoque;
     @Column(nullable=false)
     private int qtde;
-    @OneToMany
+    @ManyToOne
     private Material material;
     
     public EstoqueGeral(){

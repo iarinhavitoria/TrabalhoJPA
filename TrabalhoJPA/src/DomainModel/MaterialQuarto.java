@@ -4,28 +4,28 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Iara
  */
 @Entity
-public class MaterialQuarto {
+public class MaterialQuarto implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     int idMaterialQuarto;
-    @OneToMany
+    @ManyToMany
     Material material;
     @Column(name="Quantidade",nullable=false)
     int qtde;
-    boolean ativo;
 
     public int getIdMaterialQuarto() {
         return idMaterialQuarto;
@@ -79,17 +79,6 @@ public class MaterialQuarto {
         return true;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-    
-    
-    
-    
     
     
     

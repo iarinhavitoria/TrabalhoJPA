@@ -4,6 +4,7 @@
  */
 package DomainModel;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Column;
@@ -11,13 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Iara
  */
 @Entity
-public class Quarto {
+public class Quarto implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int idQuarto;
@@ -25,16 +27,17 @@ public class Quarto {
     private int numero;
     @Column(nullable=false)
     private boolean banheiro;
-    @Column(nullable=false)
-    private int codpredio;
+    @OneToMany
+    private Predio predio;
     
+    @OneToMany
     private List<MaterialQuarto> mats;
     
     public Quarto(int id, int num, boolean banheiro){
         this.idQuarto = id;
         this.numero = num;
         this.banheiro = banheiro;
-        mats = new LinkedList<MaterialQuarto>();
+        mats = new LinkedList<>();
     }
 
     public int getIdQuarto() {
@@ -61,12 +64,12 @@ public class Quarto {
         this.banheiro = banheiro;
     }
 
-    public int getCodpredio() {
-        return codpredio;
+    public Predio getPredio() {
+        return predio;
     }
 
-    public void setCodpredio(int codpredio) {
-        this.codpredio = codpredio;
+    public void setPredio(Predio predio) {
+        this.predio = predio;
     }
 
     public List<MaterialQuarto> getMats() {

@@ -26,6 +26,7 @@ public class Campus implements Serializable {
     @Column(name="Nome",length=200)
     private String nome;
     
+    @Column(name="Telefone",length=15)
     private String telefone;
     
     @Column(name="Cidade",length=50)
